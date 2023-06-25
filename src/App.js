@@ -1,58 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import Template from "./template/Template";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import ProductDetail from "./pages/products/detail/ProductDetail";
+import Landing from "./pages/landing/Landing";
+import Login from "./pages/login/Login";
+import AdminLogin from "./pages/adminAuth/AdminAuthLogin";
+import ShoppingCart from "./pages/shoppingCart/ShoppingCart";
+import ProductList from "./pages/products/ProductList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    <Template>
+      <Router>
+        <Routes>
+          <Route path="/products" exact element={<ProductList />} />
+          <Route path="/shopping-cart" exact element={<ShoppingCart />} />
+          <Route path="/auth-user" exact element={<Login />} />
+          <Route path="/admin/auth-user" exact element={<AdminLogin />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/" exact element={<Landing />} />
+        </Routes>
+      </Router>
+    </Template>
+  )
 }
 
 export default App;
